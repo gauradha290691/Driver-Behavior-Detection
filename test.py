@@ -3,19 +3,43 @@ import pandas as pd
 from sklearn.metrics import accuracy_score
 import numpy as np
 
-Model1=joblib.load("DriverBehaviour.pkl")
-Scalar=joblib.load("Scalar.pkl")
+# --------------------------------------------------------
+# Load the saved machine learning model and scaler
+# --------------------------------------------------------
+Model1 = joblib.load("DriverBehaviour.pkl")
+Scalar = joblib.load("Scalar.pkl")
 
-df=pd.read_csv("driving_behavior_training_data.csv")
+# --------------------------------------------------------
+# Load the driving behavior dataset
+# --------------------------------------------------------
+df = pd.read_csv("driving_behavior_training_data.csv")
 
-x=df.drop(columns=["label","trip_id","window_start_sec"])
-y=df["label"]
+# --------------------------------------------------------
+# Separate input features and target labels
+# Remove columns that are not used for prediction
+# --------------------------------------------------------
+x = df.drop(columns=["label", "trip_id", "window_start_sec"])
+y = df["label"]
 
-x_scaled=Scalar.transform(x)
+# --------------------------------------------------------
+# Standardize the input features using the
+# scaler generated during model training
+# --------------------------------------------------------
+x_scaled = Scalar.transform(x)
 
-pred_y=Model1.predict(x_scaled)
+# --------------------------------------------------------
+# Predict driving behavior using the trained model
+# --------------------------------------------------------
+pred_y = Model1.predict(x_scaled)
 
-print(accuracy_score(pred_y,y))
+# --------------------------------------------------------
+# Calculate and display prediction accuracy
+# --------------------------------------------------------
+print("Model Accuracy:", accuracy_score(pred_y, y))
 
-
-print(np.count_nonzero(pred_y=="normal"))
+# --------------------------------------------------------
+# Count the total number of samples predicted
+# as 'normal' driving behavior
+# --------------------------------------------------------
+print("Number of Normal Driving Predictions:",
+      np.count_nonzero(pred_y == "normal"))
