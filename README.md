@@ -1,6 +1,6 @@
 🚗 Driver Behavior Detection using Machine Learning
 A machine learning project that classifies driving behavior as Harsh or Normal using vehicle telemetry data. The model is built using Logistic Regression and demonstrates a complete machine learning workflow---from data preprocessing to model deployment.
-See it in action https://drive.google.com/file/d/1gajFx4uXEvinqWHKJB9o7lWfzAltebkK/view
+See simulation https://drive.google.com/file/d/1gajFx4uXEvinqWHKJB9o7lWfzAltebkK/view
 
 📌 Project Overview
 Driver behavior analysis plays a vital role in:
